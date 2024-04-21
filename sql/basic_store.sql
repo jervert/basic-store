@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Apr 21, 2024 at 10:49 AM
+-- Generation Time: Apr 21, 2024 at 07:25 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.17
 
@@ -44,6 +44,26 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `id` int NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` text NOT NULL,
+  `cart` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `email`, `password`, `cart`) VALUES
+(2, 'antonio@outbook.es', '$2y$10$EL18ODhAPhfWMaAID0SJ0.hxadOQMyC4dl2//SNVb4luh8eQ2SxNe', '{}');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -79,6 +99,13 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -93,6 +120,12 @@ ALTER TABLE `products`
 --
 ALTER TABLE `categories`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products`

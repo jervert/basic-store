@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // Variable para saber en que página estamos
 $type = $_GET['type'] ?? 'home';
@@ -28,7 +29,8 @@ $menu = Array(
 );
 
 if ($type === 'signup') {
-
+  $signup = include "../src/php/signup.php";
+  $signup();
 }
 
 ?><!DOCTYPE html>
