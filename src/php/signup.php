@@ -18,5 +18,5 @@ return function () {
   } else {
     $_SESSION['loginMessage'] = 'signupError';
   }
-  header("Location: " . $config['BASE_URL'] . "/acceso");
+  header("Location: /acceso");
 };

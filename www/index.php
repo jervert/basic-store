@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$isLogged = isset($_SESSION['login']) and $_SESSION['login'] === true;
+
 // Variable para saber en que página estamos
 $type = $_GET['type'] ?? 'home';
 
@@ -17,21 +19,34 @@ $menu = Array(
     'active' => $type === 'faqs'
   ),
   (object)Array(
-    'text' => 'Login / Registro',
-    'link' => '/acceso',
-    'active' => $type === 'login'
-  ),
-  (object)Array(
     'text' => 'Acerca de',
     'link' => '/acerca-de',
     'active' => $type === 'about'
+  ),
+  ($isLogged
+    ? (object)Array(
+      'text' => 'Salir',
+      'link' => '/salir',
+      'active' => false
+    )
+    : (object)Array(
+      'text' => 'Acceso / Registro',
+      'link' => '/acceso',
+      'active' => $type === 'login-signup'
+    )
   )
 );
 
 if ($type === 'signup') {
   $signup = include "../src/php/signup.php";
   $signup();
-}
+} else if ($type === 'login') {
+  $login = include "../src/php/login.php";
+  $login();
+} else if ($type === 'logout') {
+  $logout = include "../src/php/logout.php";
+  $logout();
+} else {
 
 ?><!DOCTYPE html>
 <html lang="es">
@@ -100,3 +115,6 @@ include '../src/php/'. $type .'.php';
 
 </body>
 </html>
+
+<?php } ?>
+

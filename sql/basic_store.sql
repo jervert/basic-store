@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Apr 21, 2024 at 07:25 PM
+-- Generation Time: Apr 21, 2024 at 10:03 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.17
 
@@ -59,7 +59,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `email`, `password`, `cart`) VALUES
-(2, 'antonio@outbook.es', '$2y$10$EL18ODhAPhfWMaAID0SJ0.hxadOQMyC4dl2//SNVb4luh8eQ2SxNe', '{}');
+(3, 'antonio@outbook.es', '$2y$10$tOrjjrgEmhjbZQ9ZJzF4GuMVh1a6X0rC0Jigcrce1zS5eadTHCC7i', '{}');
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `products`
