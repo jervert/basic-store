@@ -1,0 +1,43 @@
+name: basic-store
+volumes:
+  phpmyadmin_data:
+services:
+  nginx:
+    build:
+      context: ./
+      dockerfile: ./docker/nginx.Dockerfile
+    ports:
+    - '9191:80'
+    volumes:
+    - ./www:/var/www/html
+  php-fpm:
+    build:
+      context: ./
+      dockerfile: ./docker/php.Dockerfile
+    volumes:
+      - ./www:/var/www/html
+      - ./src/php:/var/www/src/php
+  mysql:
+    image: mysql:latest
+    restart: no
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_USER: example_user
+      MYSQL_PASSWORD: secret
+      MYSQL_DATABASE: basic_store
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      - PMA_HOST=mysql
+      - UPLOAD_LIMIT=128M
+      - APACHE_PORT=9292
+      - PMA_USER=root
+      - PMA_PASSWORD=secret
+      - PMA_PMADB=phpmyadmin
+    restart: no
+    volumes:
+      - phpmyadmin_data:/sessions
+    ports:
+      - "9292:9292"
